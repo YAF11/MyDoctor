@@ -24,8 +24,16 @@ const MainApp = () => {
         component={Doctor}
         options={{headerShown: false}}
       />
-      <Tab.Screen name="Messages" component={Messages} />
-      <Tab.Screen name="Hospitals" component={Hospitals} />
+      <Tab.Screen
+        name="Messages"
+        component={Messages}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Hospitals"
+        component={Hospitals}
+        options={{headerShown: false}}
+      />
     </Tab.Navigator>
   );
 };
