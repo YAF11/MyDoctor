@@ -1,17 +1,17 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {ILNullPhoto} from '../../../assets';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {DummyUser4} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function HomeProfile() {
+export default function HomeProfile({onPress}) {
   return (
-    <View style={styles.container}>
-      <Image source={ILNullPhoto} style={styles.avatar} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Image source={DummyUser4} style={styles.avatar} />
       <View>
         <Text style={styles.name}>Yafi' Irsyad</Text>
         <Text style={styles.profession}>Mobile Dev</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

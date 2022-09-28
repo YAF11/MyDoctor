@@ -1,15 +1,15 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {DummyDoctor1, IconStar} from '../../../assets';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {IconStar} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function RatedDoctor() {
+export default function RatedDoctor({name, desc, avatar, onPress}) {
   return (
-    <View style={styles.container}>
-      <Image source={DummyDoctor1} style={styles.avatar} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Image source={avatar} style={styles.avatar} />
       <View style={styles.profile}>
-        <Text style={styles.name}>Alexa Rachel</Text>
-        <Text style={styles.category}>Pediatrician</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.category}>{desc}</Text>
       </View>
       <View style={styles.rate}>
         <IconStar />
@@ -18,7 +18,7 @@ export default function RatedDoctor() {
         <IconStar />
         <IconStar />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 16,
+    alignItems: 'center',
   },
   avatar: {width: 50, height: 50, borderRadius: 50 / 2, marginRight: 12},
   rate: {flexDirection: 'row'},
