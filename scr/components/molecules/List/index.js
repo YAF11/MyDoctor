@@ -52,10 +52,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fonts.primary.normal,
     color: colors.text.primary,
+    textTransform: 'capitalize',
   },
   desc: {
     fontSize: 12,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
+    textTransform: 'capitalize',
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {ILCatObat, ILCatPsikiater, ILCatUmum} from '../../../assets';
+import {ILCatObat, ILCatPsikiater, ILCatUmum, ILCatAnak} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 export default function DoctorCategory({category, onPress}) {
@@ -14,7 +14,7 @@ export default function DoctorCategory({category, onPress}) {
     if (category === 'dokter obat') {
       return <ILCatObat style={styles.illustration} />;
     }
-    return <ILCatUmum style={styles.illustration} />;
+    return <ILCatAnak style={styles.illustration} />;
   };
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

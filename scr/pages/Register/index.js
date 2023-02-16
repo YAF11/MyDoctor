@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Button, Gap, Header, Input} from '../../components';
 import {Firebase} from '../../config';
-import {colors, useForm} from '../../utils';
+import {colors, showError, storeData, useForm} from '../../utils';
 
 export default function Register({navigation}) {
   const [form, setForm] = useForm({
@@ -12,18 +13,32 @@ export default function Register({navigation}) {
     password: '',
   });
 
+  const dispatch = useDispatch();
+
   const onContinue = () => {
-    console.log(form);
+    dispatch({type: 'SET_LOADING', value: true});
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
-        console.log('register succes: ', success);
+        dispatch({type: 'SET_LOADING', value: false});
+        setForm('reset');
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+          uid: success.user.uid,
+        };
+        Firebase.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
+
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
       })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log('error register: ', errorMessage);
+      .catch(err => {
+        dispatch({type: 'SET_LOADING', value: false});
+        showError(err.message);
       });
-    // navigation.navigate('UploadPhoto')
   };
   return (
     <View style={styles.page}>

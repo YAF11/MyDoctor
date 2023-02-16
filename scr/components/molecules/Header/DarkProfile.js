@@ -4,15 +4,15 @@ import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 import {DummyDoctor9} from '../../../assets';
 
-export default function DarkProfile({onPress}) {
+export default function DarkProfile({onPress, title, desc, photo}) {
   return (
     <View style={styles.container}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />
       <View style={styles.content}>
-        <Text style={styles.name}>Nairobi Putri Hayza</Text>
-        <Text style={styles.desc}>Dokter Anak</Text>
+        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.desc}>{desc}</Text>
       </View>
-      <Image source={DummyDoctor9} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
     </View>
   );
 }
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.white,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   desc: {
     fontSize: 14,
